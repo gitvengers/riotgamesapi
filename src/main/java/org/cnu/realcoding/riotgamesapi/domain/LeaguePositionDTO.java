@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 public class LeaguePositionDTO {
-    List<LeaguePosition> array = new ArrayList<>();
+    private List<LeaguePosition> array = new ArrayList<>();
 
     private class LeaguePosition{
         private String tier;
