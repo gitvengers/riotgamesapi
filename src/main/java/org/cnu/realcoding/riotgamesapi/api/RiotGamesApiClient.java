@@ -4,6 +4,6 @@ import org.springframework.web.client.RestTemplate;
 
 public class RiotGamesApiClient {
     RestTemplate restTemplate;
-    static final String APIKEY;
+    static String APIKEY;
     String requestSummonerDTO;
 }
