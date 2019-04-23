@@ -1,5 +1,6 @@
 package org.cnu.realcoding.riotgamesapi.api;
 
+import org.cnu.realcoding.riotgamesapi.domain.LeaguePositionDTO;
 import org.cnu.realcoding.riotgamesapi.domain.SummonerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -17,5 +18,9 @@ public class RiotGamesApiClient {
 
     public SummonerDTO getCurrentSummonerDTO(String summonerName) {
         return restTemplate.exchange(requestSummonerDTO, HttpMethod.GET, null, SummonerDTO.class, summonerName).getBody();
+    }
+
+    public LeaguePositionDTO getCurrentLeaguePositionDTO(String encryptedSummonerId) {
+        return restTemplate.exchange(requestLeaguePositionDTO, HttpMethod.GET, null, LeaguePositionDTO.class, encryptedSummonerId).getBody();
     }
 }
