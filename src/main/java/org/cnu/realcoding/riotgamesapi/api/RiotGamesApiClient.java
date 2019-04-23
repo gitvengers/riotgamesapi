@@ -6,4 +6,5 @@ public class RiotGamesApiClient {
     RestTemplate restTemplate;
     static String APIKEY;
     String requestSummonerDTO;
+    String requestLeaguePositionDTO;
 }
