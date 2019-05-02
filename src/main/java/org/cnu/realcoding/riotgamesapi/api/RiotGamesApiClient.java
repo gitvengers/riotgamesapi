@@ -12,7 +12,7 @@ public class RiotGamesApiClient {
 
     @Autowired
     private RestTemplate restTemplate;
-    private static String APIKEY = "RGAPI-acc0822f-5c0f-4870-9184-f2f3a484f832";
+    private final static String APIKEY = "RGAPI-acc0822f-5c0f-4870-9184-f2f3a484f832";
     private String requestSummonerDTO = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={APIKEY}";
     private String requestLeaguePositionDTO = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/{encryptedSummonerId}?api_key={APIKEY}";
 
