@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.Set;
 
 @Service
 public class LeaguePositionService {
@@ -20,19 +21,19 @@ public class LeaguePositionService {
 
     private LinkedList<String> encryptedSummonerIdQueue = new LinkedList<>();
 
-    public LeaguePositionDTO getLeaguePosition(String summonerName){
-        if(){ //todo Is there summonerName in database?
+    public Set<LeaguePositionDTO> getLeaguePosition(String summonerName){
+//        if(){ //todo Is there summonerName in database?
             //todo Then return database information.
-        } else {
+//        } else {
             String encryptedSummonerId = summonerService.getEncryptedSummonerId(summonerName);
-            LeaguePositionDTO currentLeaguePositionDTO = riotGamesApiClient.getCurrentLeaguePositionDTO(encryptedSummonerId);
+            Set<LeaguePositionDTO> currentLeaguePositionDTO = riotGamesApiClient.getCurrentLeaguePositionDTO(encryptedSummonerId);
             currentSummonerScoreRepo.insertCurrentSummonerScore(currentLeaguePositionDTO);
             return currentLeaguePositionDTO;
-        }
+//        }
     }
 
     public void setEncryptedSummonerIdQueue(){
-        this.encryptedSummonerIdQueue = currentSummonerScoreRepo.findAllEncryptedSummonerId();
+        this.encryptedSummonerIdQueue = currentSummonerScoreRepo.findAllEncryptedSummonerQueue();
     }
 
     @Scheduled(initialDelay = 5000L, fixedDelay = 2000L)
@@ -42,9 +43,9 @@ public class LeaguePositionService {
         }
 
         String target = encryptedSummonerIdQueue.pop();
-        encryptedSummonerIdQueue.add(target);
+//        encryptedSummonerIdQueue.add(target);
 
-        LeaguePositionDTO updatedLeaguePositionDTO = riotGamesApiClient.getCurrentLeaguePositionDTO(target);
-        currentSummonerScoreRepo.updateCurrentSummonerScore(target, updatedLeaguePositionDTO);
+        Set<LeaguePositionDTO> updatedLeaguePositionDTO = riotGamesApiClient.getCurrentLeaguePositionDTO(target);
+        currentSummonerScoreRepo.updateCurrentSummonerScore(updatedLeaguePositionDTO);
     }
 }
